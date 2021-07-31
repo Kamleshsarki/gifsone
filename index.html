@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Quote the Giphy</title>
+</head>
+
+<body>
+  <!-- Create 5 Buttons with different quotes from different people as their text. Give each button an onclick function called getGif and pass that function the name of the person who said the quote -->
+
+  <button class = "person"  data-person = "Rick Sanchez">wbaba Lubba Dub Dub</button>
+  <button class = "person"  data-person = "Barney Stinson">Ambition is the enemy of sucess</button>
+  <button class = "person" data-person = "Hunter Thompson">Cry God but Row Away from the Rocks</button>
+  <button class = "person"  data-person = "Clint Eastwood">Do ya feel Lucky punk? Well do ya?</button>
+  
+
+  <div id="gifDisp"></div>
+
+  <script>
+
+ document.addEventListener('click', event =>{
+     if(event.target.className === 'person')
+     {
+         let person = event.target.dataset.person
+         
+         let url = `https://api.giphy.com/v1/gifs/search?q=${person}&api_key=dc6zaTOxFJmzC&limit=10`
+         fetch(url)
+         .then(r=>r.json())
+         .then(gifs=>{
+            document.getElementById('gifDisp').innerHTML=''
+            
+             gifs.data.forEach(gif =>{
+                 let gifElem = document.createElement('img')
+                 gifElem.src = gif.images.original.url
+
+                 document.getElementById('gifDisp').append(gifElem)
+             })
+         })
+     }
+
+ })
+
+      
+
+
+    // Create a function called getGif that recieves one parameter, which will be the name of a person who said one of the quotes above
+      // create a fetch request to the giphy API and pass it the name of the person, as well as limit the request to only 10 gifs
+      // for each of the gifs returned, create an image element who's src attribute is equal to the gif's link
+      // finally, append the gif to the gifDiv above
+  </script>
+</body>
+
+</html>
