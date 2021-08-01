@@ -7,14 +7,20 @@
 </head>
 
 <body>
+<form>
+<label for="person">Person:</label>
+<input id = "newPerson" type="text" >
+<button id ="addPerson">Add Person</button>
+</form>
+    
   <!-- Create 5 Buttons with different quotes from different people as their text. Give each button an onclick function called getGif and pass that function the name of the person who said the quote -->
-
-  <button class = "person"  data-person = "Rick Sanchez">wbaba Lubba Dub Dub</button>
-  <button class = "person"  data-person = "Barney Stinson">Ambition is the enemy of sucess</button>
-  <button class = "person" data-person = "Hunter Thompson">Cry God but Row Away from the Rocks</button>
-  <button class = "person"  data-person = "Clint Eastwood">Do ya feel Lucky punk? Well do ya?</button>
+  <div id="buttons">
+  <button class = "person"  data-person = "Rick Sanchez">Rick Sanchez</button>
+  <button class = "person"  data-person = "Barney Stinson">Barney Stinson</button>
+  <button class = "person" data-person = "Hunter Thompson">Hunter Thompson</button>
+  <button class = "person"  data-person = "Clint Eastwood">Clint Eastwood</button>
   
-
+</div>
   <div id="gifDisp"></div>
 
   <script>
@@ -41,7 +47,16 @@
 
  })
 
-      
+      document.getElementById('addPerson').addEventListener('click', event=>{
+          event.preventDefault()
+      let btnElem = document.createElement('button')
+      btnElem.textContent = document.getElementById('newPerson').value 
+      btnElem.dataset.person = document.getElementById('newPerson').value
+      btnElem.className = 'person'
+      document.getElementById('buttons').append(btnElem)
+      document.getElementById('newPerson').value=''
+
+      })
 
 
     // Create a function called getGif that recieves one parameter, which will be the name of a person who said one of the quotes above
