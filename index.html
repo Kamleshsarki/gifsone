@@ -34,8 +34,8 @@
          fetch(url)
          .then(r=>r.json())
          .then(gifs=>{
+             console.log(gifs)
             document.getElementById('gifDisp').innerHTML=''
-            
              gifs.data.forEach(gif =>{
                  let gifElem = document.createElement('img')
                  gifElem.src = gif.images.original.url
@@ -48,7 +48,7 @@
  })
 
       document.getElementById('addPerson').addEventListener('click', event=>{
-          event.preventDefault()
+      event.preventDefault()
       let btnElem = document.createElement('button')
       btnElem.textContent = document.getElementById('newPerson').value 
       btnElem.dataset.person = document.getElementById('newPerson').value
